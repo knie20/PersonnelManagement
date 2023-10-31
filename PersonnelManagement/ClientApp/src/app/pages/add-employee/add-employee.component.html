@@ -1,0 +1,30 @@
+<form [formGroup]="newEmployeeForm" class="vertical-container">
+    <mat-form-field>
+        <mat-label>Manager: </mat-label>
+        <mat-select [(value)]="selectedManagerId" formControlName="reportsTo">
+        <mat-option *ngFor="let employee of employeeList" [value]="employee.id">
+            {{ employee.firstName + ' ' + employee.lastName }}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <input matInput formControlName="fName">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <input matInput formControlName="lName">
+    </mat-form-field>
+
+    <mat-form-field *ngIf="roleList">
+    <mat-label>Role(s): </mat-label>
+    <mat-select [(value)]="selectedRoles" multiple formControlName="roles">
+        <mat-option *ngFor="let role of roleList" [value]="role">
+        {{role.name}}
+        </mat-option>
+    </mat-select>
+    </mat-form-field>
+    <button mat-button (click)="handleAddClick()">Add Employee</button>
+</form>

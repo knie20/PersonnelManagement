@@ -1,0 +1,15 @@
+
+<div class="vertical-container">
+  <mat-form-field>
+    <mat-label>Manager: </mat-label>
+    <mat-select [(value)]="selectedManagerId">
+      <mat-option *ngFor="let manager of managerList" [value]="manager.id">
+        {{ manager.firstName + ' ' + manager.lastName }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <app-employees-table *ngIf="selectedManagerId" [managerId]="selectedManagerId"></app-employees-table>
+
+  <button mat-button (click)="handleAddEmployeeClick()">Add Employee</button>
+</div>
